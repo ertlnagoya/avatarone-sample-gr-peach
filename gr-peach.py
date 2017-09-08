@@ -175,9 +175,8 @@ def main():
 
     print("[+] Target arrived at main(). Transferring state to the emulator")
     set_regs(e, get_regs(t))
-    print("emulator pc = %#x" % e.get_register('pc'))
-    e.set_register('sp', 0x114514)
-    print("emulator sp = %#x" % e.get_register('sp'))
+    print("emulator $pc = %#x" % e.get_register('pc'))
+    print("emulator $sp = %#x" % e.get_register('sp'))
     get_regs(e)
 
     print("[+] Continuing execution in the emulator!")
