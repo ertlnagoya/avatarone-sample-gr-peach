@@ -175,9 +175,16 @@ def main():
 
     print("[+] Target arrived at main(). Transferring state to the emulator")
     set_regs(e, get_regs(t))
-    print("emulator $pc = %#x" % e.get_register('pc'))
-    print("emulator $sp = %#x" % e.get_register('sp'))
+    e.set_register('pc', t.get_register('pc')) # BUG: to fix emulator's $pc. Do not remove me! 
+    e.set_register('lr', t.get_register('lr')) # BUG: to fix emulator's $lr. Do not remove me! 
+    e.set_register('sp', t.get_register('sp')) # BUG: to fix emulator's $sp. Do not remove me! 
+    reg_pc = e.get_register('pc')
+    print("emulator $pc = %#x" % reg_pc)
+    reg_sp = e.get_register('sp')
+    print("emulator $sp = %#x" % reg_sp)
     get_regs(e)
+    assert(reg_pc > 0)
+    assert(reg_sp > 0)
 
     print("[+] Continuing execution in the emulator!")
     print("final break point = %#x" % timeout_addr)
